@@ -253,11 +253,7 @@
                 { "displayName": "奧義", "name": "cost" },
                 { "displayName": "奧義技", "name": "des" },
                 { "displayName": "覺醒技", "name": "des" },
-                { "displayName": "兵種1", "name": "name" },
-                { "displayName": "兵種2", "name": "name" },
-                { "displayName": "兵種3", "name": "name" },
-                { "displayName": "兵種4", "name": "name" },
-                { "displayName": "兵種5", "name": "name" },
+                { "displayName": "兵種", "name": "name" },
                 { "displayName": "屬性1", "name": "describe" },
                 { "displayName": "屬性2", "name": "describe" },
                 { "displayName": "屬性3", "name": "describe" },
@@ -1361,8 +1357,9 @@
                 const cost = row[2];
                 const skillDes = row[3];
                 const awakenDes = row[4];
-                const armies = row.slice(5, 10);
-                const stats = row.slice(10, 15);
+                const armies = row.slice(5, 10).filter(Boolean);
+                const armyDisplay = armies.join('、');
+                const stats = row.slice(10, 15).filter(Boolean);
 
                 const tr = document.createElement('tr');
 
@@ -1401,14 +1398,13 @@
                 awakenTd.innerHTML = awakenDes ? highlightText(awakenDes, keyword) : '<span class="null-value">-</span>';
                 tr.appendChild(awakenTd);
 
-                // 6~10. 兵種 1~5
-                armies.forEach(army => {
-                    const td = document.createElement('td');
-                    td.innerHTML = army ? highlightText(army, keyword) : '<span class="null-value">-</span>';
-                    tr.appendChild(td);
-                });
+                // 6. 合併兵種
+                const armyTd = document.createElement('td');
+                armyTd.className = 'army-des';
+                armyTd.innerHTML = armyDisplay ? highlightText(armyDisplay, keyword) : '<span class="null-value">-</span>';
+                tr.appendChild(armyTd);
 
-                // 11~15. 屬性 1~5
+                // 7~11. 屬性 1~5
                 stats.forEach(stat => {
                     const td = document.createElement('td');
                     td.innerHTML = stat ? highlightText(stat, keyword) : '<span class="null-value">-</span>';

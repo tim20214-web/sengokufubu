@@ -254,11 +254,7 @@
                 { "displayName": "奧義技", "name": "des" },
                 { "displayName": "覺醒技", "name": "des" },
                 { "displayName": "兵種", "name": "name" },
-                { "displayName": "屬性1", "name": "describe" },
-                { "displayName": "屬性2", "name": "describe" },
-                { "displayName": "屬性3", "name": "describe" },
-                { "displayName": "屬性4", "name": "describe" },
-                { "displayName": "屬性5", "name": "describe" }
+                { "displayName": "屬性", "name": "describe" }
             ],
             "rows": [
                 [101101, "伊達政宗", 3, "造成敵方後排175%物理傷害，賦予自身神速（1回合）", "（不受動搖影響）進入戰場時，賦予敵方前排動搖（1回合），賦予自身高昂（4回合），賦予自身神速（4回合）", "足輕步兵", "伊達騎馬隊", "斬込隊", "四方竹弓手", null, "物理攻擊+18%", "閃避幾率+25%", "初始奧義+1", "物理傷害+27%", "傷害+25%"],
@@ -1404,12 +1400,12 @@
                 armyTd.innerHTML = armyDisplay ? highlightText(armyDisplay, keyword) : '<span class="null-value">-</span>';
                 tr.appendChild(armyTd);
 
-                // 7~11. 屬性 1~5
-                stats.forEach(stat => {
-                    const td = document.createElement('td');
-                    td.innerHTML = stat ? highlightText(stat, keyword) : '<span class="null-value">-</span>';
-                    tr.appendChild(td);
-                });
+                // 7. 合併屬性
+                const statTd = document.createElement('td');
+                const statDisplay = stats.join('、');
+                statTd.className = 'stat-des';
+                statTd.innerHTML = statDisplay ? highlightText(statDisplay, keyword) : '<span class="null-value">-</span>';
+                tr.appendChild(statTd);
 
                 tableBody.appendChild(tr);
             });

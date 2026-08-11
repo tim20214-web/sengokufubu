@@ -1364,7 +1364,6 @@
                 img.src = `general/${gid}.jpg`;
                 img.alt = name || '武將頭像';
                 img.className = 'avatar-img';
-				img.loading = "lazy"
                 img.onerror = function() {
                     this.style.display = 'none';
                     imgTd.innerHTML = '<span class="null-value">-</span>';

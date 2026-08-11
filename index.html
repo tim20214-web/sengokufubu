@@ -152,8 +152,8 @@
 
         /* 武將頭像樣式 */
         .avatar-img {
-            width: 44px;
-            height: 62px;
+            width: 50px;
+            height: 50px;
             object-fit: cover;
             border-radius: 6px;
             border: 1px solid var(--border-color);
@@ -211,7 +211,7 @@
     <!-- 控制面板 -->
     <div class="filter-panel">
         <div class="search-group">
-            <input type="text" id="searchInput" class="search-input" placeholder="搜尋武將名、技能、屬性、兵種...">
+            <input type="text" id="searchInput" class="search-input" placeholder="搜尋武將名、技能、屬性、兵種...（支援 * 萬用字元）">
         </div>
         
         <div class="filter-group">
@@ -253,8 +253,16 @@
                 { "displayName": "奧義", "name": "cost" },
                 { "displayName": "奧義技", "name": "des" },
                 { "displayName": "覺醒技", "name": "des" },
-                { "displayName": "兵種", "name": "name" },
-                { "displayName": "屬性", "name": "describe" }
+                { "displayName": "兵種1", "name": "name" },
+                { "displayName": "兵種2", "name": "name" },
+                { "displayName": "兵種3", "name": "name" },
+                { "displayName": "兵種4", "name": "name" },
+                { "displayName": "兵種5", "name": "name" },
+                { "displayName": "屬性1", "name": "describe" },
+                { "displayName": "屬性2", "name": "describe" },
+                { "displayName": "屬性3", "name": "describe" },
+                { "displayName": "屬性4", "name": "describe" },
+                { "displayName": "屬性5", "name": "describe" }
             ],
             "rows": [
                 [101101, "伊達政宗", 3, "造成敵方後排175%物理傷害，賦予自身神速（1回合）", "（不受動搖影響）進入戰場時，賦予敵方前排動搖（1回合），賦予自身高昂（4回合），賦予自身神速（4回合）", "足輕步兵", "伊達騎馬隊", "斬込隊", "四方竹弓手", null, "物理攻擊+18%", "閃避幾率+25%", "初始奧義+1", "物理傷害+27%", "傷害+25%"],
@@ -1197,6 +1205,7 @@
                 [604158, "吉川元春", 2, "造成敵方隨機4部隊260%物理傷害並賦予（50%幾率）低迷（1回合），賦予自身鎮靜", "(不受動搖、靜默影響）自身獲得護盾時，回復自身20%物理攻擊的兵力並賦予不動，造成敵方防禦最高的3部隊120%物理傷害並賦予動搖（1回合）", "足輕步兵", "赤備兵", "越後兵", "四方竹弓手", null, "物理攻擊+18%", "傷害+25%", "初始奧義+1", "傷害減免25%", "傷害+25%"],
                 [604159, "小早川隆景", 2, "造成我方全體5%计策傷害並賦予振奮（1回合），造成我方後排5%计策傷害並賦予死戰（1回合），造成敵方奧義最多的3部隊5%计策傷害並賦予振奮（1回合）", "(不受動搖、靜默影響）己方每受到10次傷害後，提供豎排友方部隊30%计策攻擊的護盾值並賦予封印（1回合），回復我方前排5%计策攻擊的兵力並賦予不屈（1回合），回復我方全體10%计策攻擊的兵力並賦予庇護（1回合）", "足輕步兵", "撫子騎馬隊", "一番槍隊", "里見水軍", null, "物理防禦+50%", "招架+25%", "帶兵上限+30%", "傷害減免25%", "物理傷害減免30%"],
                 [604160, "穗井田元清", 1, "賦予我方後排連戰（2回合），造成敵方兵力最少的部隊300%物理傷害並賦予羸弱（1回合）", "(不受動搖、靜默影響）自身獲得負面狀態時，回復我方橫排30%物理攻擊的兵力並賦予神佑，造成敵方兵力最少的3部隊40%物理傷害並賦予羸弱（1回合），提供自身30%物理攻擊的護盾值並賦予入魔（1回合），賦予自身重擊（2層）", "足輕步兵", "薙刀隊", "長弓手", "鐵炮隊", null, "物理攻擊+18%", "傷害+25%", "帶兵上限+30%", "物理傷害+27%", "傷害+25%"],
+                [704001, "真田幸村遺棄", 1, "造成敵方全體50%計策傷害，回復自身20%計策攻擊的兵力並賦予振奮", null, "足輕步兵", "陰陽師", "甲賀騎馬隊", "女忍隊", "大筒隊", "計策攻擊+30%", "識破幾率+30%", "帶兵上限+30%", "計策傷害+45%", "傷害+25%"],
                 [704002, "伊達政宗", 3, "造成敵方全體150%物理傷害，賦予自身高昂（2層）（2回合），賦予自身神速（2回合）", null, "足輕步兵", "伊達騎馬隊", "精銳騎兵", "大筒隊", "槍騎兵", "物理攻擊+18%", "普攻暴擊幾率+45%", "帶兵上限+30%", "物理傷害+27%", "傷害+25%"],
                 [704003, "德川家康", 3, "造成敵方隨機3部隊175%計策傷害，賦予我方隨機1部隊頓悟，賦予我方全體東照（4回合）", null, "足輕步兵", "陰陽師", "傾奇者", "精銳騎兵", "槍騎兵", "計策攻擊+30%", "技能暴擊幾率+30%", "帶兵上限+30%", "計策傷害+45%", "傷害+25%"],
                 [704004, "豊臣秀吉", 2, "賦予敵方全體嘲諷（1回合），回復自身40%物理攻擊的兵力並賦予鐵壁（3回合），提供己方攻擊最高的3部隊25%物理攻擊的護盾值並賦予不動", null, "足輕步兵", "重裝備兵", "一番槍隊", "北面劍士", "大筒隊", "計策防禦+80%", "招架+25%", "帶兵上限+30%", "傷害減免25%", "物理傷害減免30%"],
@@ -1272,12 +1281,39 @@
         }
         initArmyOptions();
 
+        // 將搜尋關鍵字轉成萬用字元規則：* 代表任意數量的字元
+        // 例如：
+        //   伊達*   → 以「伊達」開頭
+        //   *政宗   → 以「政宗」結尾
+        //   *伊達*  → 只要包含「伊達」
+        //   伊*宗   → 「伊」與「宗」中間可有任意字元
+        function wildcardToRegex(pattern) {
+            const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+            return new RegExp(escaped.replace(/\*/g, '.*'), 'i');
+        }
+
+        // 搜尋用：支援 * 萬用字元；沒有 * 時仍維持原本的「包含」搜尋
+        function wildcardMatch(text, pattern) {
+            if (!pattern || typeof text !== 'string') return false;
+            if (!pattern.includes('*')) return text.toLowerCase().includes(pattern.toLowerCase());
+            return wildcardToRegex(pattern).test(text);
+        }
+
         // 高亮關鍵字輔助函式
         function highlightText(text, keyword) {
             if (!keyword || typeof text !== 'string') return text;
-            const escKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(${escKeyword})`, 'gi');
-            return text.replace(regex, '<mark>$1</mark>');
+
+            // 有 * 時，高亮實際輸入的文字片段（忽略 *）
+            const parts = keyword.split('*').filter(Boolean);
+            if (parts.length === 0) return text;
+
+            let result = text;
+            parts.forEach(part => {
+                const escaped = part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(`(${escaped})`, 'gi');
+                result = result.replace(regex, '<mark>$1</mark>');
+            });
+            return result;
         }
 
         // 核心渲染表格與篩選邏輯
@@ -1321,11 +1357,11 @@
 
                 // 關鍵字搜尋 (包含武將名、奧義技、覺醒技、兵種、屬性)
                 if (keyword !== '') {
-                    const matchName = name.toLowerCase().includes(keyword);
-                    const matchSkill = skillDes.toLowerCase().includes(keyword);
-                    const matchAwaken = awakenDes.toLowerCase().includes(keyword);
-                    const matchArmy = armies.some(a => a.toLowerCase().includes(keyword));
-                    const matchStat = stats.some(s => s.toLowerCase().includes(keyword));
+                    const matchName = wildcardMatch(name, keyword);
+                    const matchSkill = wildcardMatch(skillDes, keyword);
+                    const matchAwaken = wildcardMatch(awakenDes, keyword);
+                    const matchArmy = armies.some(a => wildcardMatch(a, keyword));
+                    const matchStat = stats.some(s => wildcardMatch(s, keyword));
 
                     if (!matchName && !matchSkill && !matchAwaken && !matchArmy && !matchStat) {
                         return false;
@@ -1352,16 +1388,15 @@
                 const cost = row[2];
                 const skillDes = row[3];
                 const awakenDes = row[4];
-                const armies = row.slice(5, 10).filter(Boolean);
-                const armyDisplay = armies.join('、');
-                const stats = row.slice(10, 15).filter(Boolean);
+                const armies = row.slice(5, 10);
+                const stats = row.slice(10, 15);
 
                 const tr = document.createElement('tr');
 
                 // 1. GID 替換為圖片連結
                 const imgTd = document.createElement('td');
                 const img = document.createElement('img');
-                img.src = `general/${gid}.jpg`;
+                img.src = `general/${gid}.png`;
                 img.alt = name || '武將頭像';
                 img.className = 'avatar-img';
                 img.onerror = function() {
@@ -1393,18 +1428,19 @@
                 awakenTd.innerHTML = awakenDes ? highlightText(awakenDes, keyword) : '<span class="null-value">-</span>';
                 tr.appendChild(awakenTd);
 
-                // 6. 合併兵種
-                const armyTd = document.createElement('td');
-                armyTd.className = 'army-des';
-                armyTd.innerHTML = armyDisplay ? highlightText(armyDisplay, keyword) : '<span class="null-value">-</span>';
-                tr.appendChild(armyTd);
+                // 6~10. 兵種 1~5
+                armies.forEach(army => {
+                    const td = document.createElement('td');
+                    td.innerHTML = army ? highlightText(army, keyword) : '<span class="null-value">-</span>';
+                    tr.appendChild(td);
+                });
 
-                // 7. 合併屬性
-                const statTd = document.createElement('td');
-                const statDisplay = stats.join('、');
-                statTd.className = 'stat-des';
-                statTd.innerHTML = statDisplay ? highlightText(statDisplay, keyword) : '<span class="null-value">-</span>';
-                tr.appendChild(statTd);
+                // 11~15. 屬性 1~5
+                stats.forEach(stat => {
+                    const td = document.createElement('td');
+                    td.innerHTML = stat ? highlightText(stat, keyword) : '<span class="null-value">-</span>';
+                    tr.appendChild(td);
+                });
 
                 tableBody.appendChild(tr);
             });

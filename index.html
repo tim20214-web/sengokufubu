@@ -253,16 +253,8 @@
                 { "displayName": "奧義", "name": "cost" },
                 { "displayName": "奧義技", "name": "des" },
                 { "displayName": "覺醒技", "name": "des" },
-                { "displayName": "兵種1", "name": "name" },
-                { "displayName": "兵種2", "name": "name" },
-                { "displayName": "兵種3", "name": "name" },
-                { "displayName": "兵種4", "name": "name" },
-                { "displayName": "兵種5", "name": "name" },
-                { "displayName": "屬性1", "name": "describe" },
-                { "displayName": "屬性2", "name": "describe" },
-                { "displayName": "屬性3", "name": "describe" },
-                { "displayName": "屬性4", "name": "describe" },
-                { "displayName": "屬性5", "name": "describe" }
+                { "displayName": "兵種", "name": "name" },
+                { "displayName": "屬性", "name": "describe" }
             ],
             "rows": [
                 [101101, "伊達政宗", 3, "造成敵方後排175%物理傷害，賦予自身神速（1回合）", "（不受動搖影響）進入戰場時，賦予敵方前排動搖（1回合），賦予自身高昂（4回合），賦予自身神速（4回合）", "足輕步兵", "伊達騎馬隊", "斬込隊", "四方竹弓手", null, "物理攻擊+18%", "閃避幾率+25%", "初始奧義+1", "物理傷害+27%", "傷害+25%"],
@@ -1205,7 +1197,6 @@
                 [604158, "吉川元春", 2, "造成敵方隨機4部隊260%物理傷害並賦予（50%幾率）低迷（1回合），賦予自身鎮靜", "(不受動搖、靜默影響）自身獲得護盾時，回復自身20%物理攻擊的兵力並賦予不動，造成敵方防禦最高的3部隊120%物理傷害並賦予動搖（1回合）", "足輕步兵", "赤備兵", "越後兵", "四方竹弓手", null, "物理攻擊+18%", "傷害+25%", "初始奧義+1", "傷害減免25%", "傷害+25%"],
                 [604159, "小早川隆景", 2, "造成我方全體5%计策傷害並賦予振奮（1回合），造成我方後排5%计策傷害並賦予死戰（1回合），造成敵方奧義最多的3部隊5%计策傷害並賦予振奮（1回合）", "(不受動搖、靜默影響）己方每受到10次傷害後，提供豎排友方部隊30%计策攻擊的護盾值並賦予封印（1回合），回復我方前排5%计策攻擊的兵力並賦予不屈（1回合），回復我方全體10%计策攻擊的兵力並賦予庇護（1回合）", "足輕步兵", "撫子騎馬隊", "一番槍隊", "里見水軍", null, "物理防禦+50%", "招架+25%", "帶兵上限+30%", "傷害減免25%", "物理傷害減免30%"],
                 [604160, "穗井田元清", 1, "賦予我方後排連戰（2回合），造成敵方兵力最少的部隊300%物理傷害並賦予羸弱（1回合）", "(不受動搖、靜默影響）自身獲得負面狀態時，回復我方橫排30%物理攻擊的兵力並賦予神佑，造成敵方兵力最少的3部隊40%物理傷害並賦予羸弱（1回合），提供自身30%物理攻擊的護盾值並賦予入魔（1回合），賦予自身重擊（2層）", "足輕步兵", "薙刀隊", "長弓手", "鐵炮隊", null, "物理攻擊+18%", "傷害+25%", "帶兵上限+30%", "物理傷害+27%", "傷害+25%"],
-                [704001, "真田幸村遺棄", 1, "造成敵方全體50%計策傷害，回復自身20%計策攻擊的兵力並賦予振奮", null, "足輕步兵", "陰陽師", "甲賀騎馬隊", "女忍隊", "大筒隊", "計策攻擊+30%", "識破幾率+30%", "帶兵上限+30%", "計策傷害+45%", "傷害+25%"],
                 [704002, "伊達政宗", 3, "造成敵方全體150%物理傷害，賦予自身高昂（2層）（2回合），賦予自身神速（2回合）", null, "足輕步兵", "伊達騎馬隊", "精銳騎兵", "大筒隊", "槍騎兵", "物理攻擊+18%", "普攻暴擊幾率+45%", "帶兵上限+30%", "物理傷害+27%", "傷害+25%"],
                 [704003, "德川家康", 3, "造成敵方隨機3部隊175%計策傷害，賦予我方隨機1部隊頓悟，賦予我方全體東照（4回合）", null, "足輕步兵", "陰陽師", "傾奇者", "精銳騎兵", "槍騎兵", "計策攻擊+30%", "技能暴擊幾率+30%", "帶兵上限+30%", "計策傷害+45%", "傷害+25%"],
                 [704004, "豊臣秀吉", 2, "賦予敵方全體嘲諷（1回合），回復自身40%物理攻擊的兵力並賦予鐵壁（3回合），提供己方攻擊最高的3部隊25%物理攻擊的護盾值並賦予不動", null, "足輕步兵", "重裝備兵", "一番槍隊", "北面劍士", "大筒隊", "計策防禦+80%", "招架+25%", "帶兵上限+30%", "傷害減免25%", "物理傷害減免30%"],
@@ -1388,8 +1379,9 @@
                 const cost = row[2];
                 const skillDes = row[3];
                 const awakenDes = row[4];
-                const armies = row.slice(5, 10);
-                const stats = row.slice(10, 15);
+                const armies = row.slice(5, 10).filter(Boolean);
+				const armyDisplay = armies.join('、');
+                const stats = row.slice(10, 15).filter(Boolean);
 
                 const tr = document.createElement('tr');
 
@@ -1428,19 +1420,18 @@
                 awakenTd.innerHTML = awakenDes ? highlightText(awakenDes, keyword) : '<span class="null-value">-</span>';
                 tr.appendChild(awakenTd);
 
-                // 6~10. 兵種 1~5
-                armies.forEach(army => {
-                    const td = document.createElement('td');
-                    td.innerHTML = army ? highlightText(army, keyword) : '<span class="null-value">-</span>';
-                    tr.appendChild(td);
-                });
+                // 6. 合併兵種
+                const armyTd = document.createElement('td');
+                armyTd.className = 'army-des';
+                armyTd.innerHTML = armyDisplay ? highlightText(armyDisplay, keyword) : '<span class="null-value">-</span>';
+                tr.appendChild(armyTd);
 
-                // 11~15. 屬性 1~5
-                stats.forEach(stat => {
-                    const td = document.createElement('td');
-                    td.innerHTML = stat ? highlightText(stat, keyword) : '<span class="null-value">-</span>';
-                    tr.appendChild(td);
-                });
+                // 7. 合併屬性
+                const statTd = document.createElement('td');
+                const statDisplay = stats.join('、');
+                statTd.className = 'stat-des';
+                statTd.innerHTML = statDisplay ? highlightText(statDisplay, keyword) : '<span class="null-value">-</span>';
+                tr.appendChild(statTd);
 
                 tableBody.appendChild(tr);
             });

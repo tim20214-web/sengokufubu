@@ -2,52 +2,74 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>覺醒技順序</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讀取 GitHub CSV</title>
     <!-- 引入 Papa Parse 函式庫 -->
     <script src="https://cloudflare.com"></script>
+    <style>
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
 </head>
 <body>
 
-    <h2>覺醒技順序</h2>
+    <h2>GitHub CSV 資料顯示</h2>
     <div id="table-container">載入中...</div>
 
     <script>
-        // 請替換成你的 GitHub Raw 檔案真實網址
+        // ⚠️ 請務必替換成您的 GitHub Raw 真實網址
         const csvUrl = 'https://raw.githubusercontent.com/tim20214-web/sengokufubu/refs/heads/main/data.csv';
 
         fetch(csvUrl)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP 錯誤！狀態碼: ${response.status}`);
+                }
+                return response.text();
+            })
             .then(csvText => {
                 // 使用 PapaParse 解析 CSV 文字
                 Papa.parse(csvText, {
-                    header: true, // 若 CSV 第一列是標題請設為 true
+                    header: true,         // 第一列作為欄位名稱
+                    skipEmptyLines: true, // 自動跳過空行
                     complete: function(results) {
+                        console.log("解析成功：", results.data); // 偵錯用
                         displayTable(results.data);
+                    },
+                    error: function(error) {
+                        console.error("PapaParse 解析失敗：", error);
+                        document.getElementById('table-container').innerText = 'CSV 解析失敗';
                     }
                 });
             })
             .catch(error => {
-                console.error('讀取失敗：', error);
-                document.getElementById('table-container').innerText = '無法載入 CSV 檔案';
+                console.error('Fetch 讀取失敗：', error);
+                document.getElementById('table-container').innerText = `無法載入檔案: ${error.message}`;
             });
 
         // 建立 HTML 表格函式
         function displayTable(data) {
-            if (!data.length) return;
+            if (!data || data.length === 0) {
+                document.getElementById('table-container').innerText = 'CSV 檔案中沒有資料';
+                return;
+            }
             
-            let html = '<table border="1"><tr>';
-            // 產生表頭
-            const keys = Object.keys(data[0]);
+            // ⭕ 正確取得第一筆物件的所有 Key 作為表頭
+            const keys = Object.keys(data[0]); 
+            
+            let html = '<table><thead><tr>';
+            // 產生表頭 th
             keys.forEach(key => { html += `<th>${key}</th>`; });
-            html += '</tr>';
+            html += '</tr></thead><tbody>';
 
-            // 產生資料列
+            // 產生資料列 td
             data.forEach(row => {
                 html += '<tr>';
                 keys.forEach(key => { html += `<td>${row[key] || ''}</td>`; });
                 html += '</tr>';
             });
-            html += '</table>';
+            html += '</tbody></table>';
 
             document.getElementById('table-container').innerHTML = html;
         }

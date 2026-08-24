@@ -1,173 +1,56 @@
-<!doctype html>
-<html lang="zh-Hant">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>覺醒技順序</title>
-        <style>body{font-family:"Microsoft JhengHei",Arial;margin:0;background:#f4f6f8;color:#222}.wrap{max-width:1000px;margin:auto;padding:24px}h1{margin-top:0}.bar{display:flex;gap:8px;margin-bottom:14px}input{flex:1;padding:12px;border:1px solid #ccd3da;border-radius:8px;font-size:16px}button{padding:10px 16px;border:1px solid #ccd3da;border-radius:8px;background:#fff}table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:10px 12px;border-bottom:1px solid #e5e8eb;text-align:left}th{background:#eef2f5;position:sticky;top:0}.box{overflow:auto;border-radius:10px;box-shadow:0 2px 10px #0001}mark{background:#ffe58f}.info{color:#666;margin:8px 0 14px}</style>
-    </head>
-    <body>
-        <div class="wrap">
-            <h1>覺醒技順序</h1>
-            <div class="bar">
-                <input id="q" placeholder="搜尋關鍵字，可使用 * 萬用字元">
-                <button id="clear">清除</button>
-            </div>
-            <div class="info" id="info">
-            </div>
-            <div class="box">
-                <table>
-                    <thead>
-                        <tr id="h">
-                        </tr>
-                    </thead>
-                    <tbody id="b">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <script>
-			const headers=["優先級", "描述"];
-			const data=[
-				["1", "進入戰場時"], 
-				["2", "回合開始時"], 
-				["3", "回合結束時"], 
-				["4", "自身攜帶的影之精要生效後"], 
-				["5", "造成傷害後"], 
-				["6", "受到除友方直接傷害外的傷害被擊破後"], 
-				["7", "被擊破後"], 
-				["8", "擊殺敵方四維最高或兵力最多的一隻部隊後"], 
-				["9", "敵方前排部隊被擊破後"], 
-				["10", "進入戰場時"], 
-				["11", "替補進入戰場時"], 
-				["12", "自身兵力減少至50%後"], 
-				["13", "自身兵力減少至70%後"], 
-				["14", "敵方部隊被擊破後"], 
-				["15", "我方全體武將每損失出征總兵力的20%後"], 
-				["16", "自身奧義技擊破敵方部隊後"], 
-				["17", "己方或敵方部隊兵力減少至50%後（直接被擊破時不觸發）"], 
-				["18", "我方全體武將每損失出征總兵力的40%後"], 
-				["19", "己方部隊被擊破後"], 
-				["20", "己方普攻被招架後"], 
-				["21", "回合開始時"], 
-				["22", "自身招架後"], 
-				["23", "己方招架後"], 
-				["24", "敵方受到另一敵方傷害後"], 
-				["25", "敵方每釋放4次覺醒技後"], 
-				["26", "友軍賦予潰散/混亂/重創狀態後（自身不觸發）"], 
-				["27", "友軍對有潰散/混亂/重創的敵方武將造成直接傷害後（自身不觸發）"], 
-				["28", "敵方每釋放3次覺醒技後"], 
-				["29", "受到敵方覺醒技傷害後"], 
-				["30", "受到敵方覺醒技或突破技傷害後"], 
-				["31", "己方每受到10次傷害後"], 
-				["32", "?方被施加醉意buff?"], 
-				["33", "己方受到技能暴?后"], 
-				["34", "自身技能暴擊後"], 
-				["35", "友軍部隊技能暴擊後（自身不觸發）"], 
-				["36", "回合結束時"], 
-				["37", "自身行動後（重擊不觸發）"], 
-				["38", "識破後"], 
-				["39", "己方識破後"], 
-				["40", "普攻與奧義技使對手生命降低到55%以下後"], 
-				["41", "普攻與奧義技造成傷害後"], 
-				["42", "自身釋放奧義技後"], 
-				["43", "敵方釋放奧義技後"], 
-				["44", "己方釋放奧義技後"], 
-				["45", "敵方回復奧義後"], 
-				["46", "受到非自身來源（自身技能、攻擊回復等）的效果回复兵力?"], 
-				["47", "?方回复兵力?"], 
-				["48", "己方失去一個正面狀態後"], 
-				["49", "敵方失去一個正面狀態後"], 
-				["50", "己方失去一個負面狀態後"], 
-				["51", "敵方失去一個負面狀態後"], 
-				["52", "衰頹BUFF造成敵方奧義減少後"], 
-				["53", "己方普通攻擊被閃避後"], 
-				["54", "己方閃避後"], 
-				["55", "閃避後"], 
-				["56", "普攻暴擊後"], 
-				["57", "己方普攻暴擊後"], 
-				["58", "普攻結束後"], 
-				["59", "己方普攻結束後"], 
-				["60", "己方普通攻擊造成傷害後追擊"], 
-				["61", "友軍部隊普攻結束後（自身普攻不觸發）"], 
-				["62", "己方部隊兵力減少至50%後"], 
-				["63", "敵軍部隊減少至60%後"], 
-				["64", "自身獲得正面狀態時"], 
-				["65", "自身獲得負面狀態時"], 
-				["66", "受到攻擊後"], 
-				["67", "受到普通攻擊傷害後"], 
-				["68", "受到普通攻擊或奧義技傷害後"], 
-				["69", "己方受到普通攻擊傷害後"], 
-				["70", "受到奧義技傷害後"], 
-				["71", "受到奧義技回復兵力後"], 
-				["72", "自身獲得護盾時"], 
-				["73", "自身護盾被擊破時"], 
-				["74", "敵方護盾被擊破時"], 
-				["75", "己方護盾被擊破時"], 
-				["100", "每回合敵方首支部隊行動後"], 
-				["101", "每回合己方首支部隊行動後"], 
-				["102", "敵方每部隊每回合首次行動後（重擊不觸發）"], 
-				["103", "己方每部隊每回合首次行動後（重擊不觸發）"], 
-				["104", "敵方每釋放3次奧義技後"], 
-				["105", "敵方每釋放2次覺醒技後"], 
-				["106", "敵方釋放覺醒技後"], 
-				["107", "敵方每釋放5次突破技或覺醒技後"], 
-				["108", "敵方每釋放4次突破技或覺醒技後"]
-			];
-			
-			const q = document.getElementById("q");
-			const b = document.getElementById("b");
-			const h = document.getElementById("h")
-			const info = document.getElementById("info");
-			
-			function esc(s) {
-			    return String(s??"").replace(/[.*+?^${}()|[\]\\]/g,"\\$&")
-			}
-			
-			function match(t,p) {
-			    t = String(t??"");p=p.trim();
-				if(!p)
-				    return true;
-			    if(!p.includes("*"))
-				    return t.toLocaleLowerCase().includes(p.toLocaleLowerCase());
-				let a=p.split("*").filter(Boolean).map(esc);
-				return new RegExp(a.join(".*"),"iu").test(t)
-			}
-			
-			function eh(s) {
-			    return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")
-			}
-			
-			function hi(s,p) {
-			    let x = eh(s);
-				for(let z of p.split("*").filter(Boolean))
-				   x = x.replace(new RegExp(esc(z),"giu"),m=>"<mark>"+m+"</mark>");
-				return x
-			}
-			
-			headers.forEach (x => {
-			    let th = document.createElement("th");
-				th.textContent = x;
-				h.appendChild(th)
-			});
-				
-			function render() {
-				let p = q.value.trim();
-				let a = data.filter(r => r.some(c => match(c, p)));
-			    b.innerHTML = "";
-			    a.forEach (r => { 
-				    let tr = document.createElement("tr");
-					headers.forEach((_,i) => { 
-					    let td = document.createElement("td");
-						td.innerHTML = hi(r[i]??"",p);
-						tr.appendChild(td)});
-						b.appendChild(tr)});
-						info.textContent = `共 ${data.length} 筆，符合 ${a.length} 筆`
-			}
-			
-			q.oninput = render;
-			document.getElementById("clear").onclick=() => {q.value="";render();q.focus()};
-			render();
-		</script>
-    </body>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>覺醒技順序</title>
+    <!-- 引入 Papa Parse 函式庫 -->
+    <script src="https://cloudflare.com"></script>
+</head>
+<body>
+
+    <h2>GitHub CSV 資料顯示</h2>
+    <div id="table-container">載入中...</div>
+
+    <script>
+        // 請替換成你的 GitHub Raw 檔案真實網址
+        const csvUrl = 'https://tim20214-web.github.io/sengokufubu/data.csv';
+
+        fetch(csvUrl)
+            .then(response => response.text())
+            .then(csvText => {
+                // 使用 PapaParse 解析 CSV 文字
+                Papa.parse(csvText, {
+                    header: true, // 若 CSV 第一列是標題請設為 true
+                    complete: function(results) {
+                        displayTable(results.data);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('讀取失敗：', error);
+                document.getElementById('table-container').innerText = '無法載入 CSV 檔案';
+            });
+
+        // 建立 HTML 表格函式
+        function displayTable(data) {
+            if (!data.length) return;
+            
+            let html = '<table border="1"><tr>';
+            // 產生表頭
+            const keys = Object.keys(data[0]);
+            keys.forEach(key => { html += `<th>${key}</th>`; });
+            html += '</tr>';
+
+            // 產生資料列
+            data.forEach(row => {
+                html += '<tr>';
+                keys.forEach(key => { html += `<td>${row[key] || ''}</td>`; });
+                html += '</tr>';
+            });
+            html += '</table>';
+
+            document.getElementById('table-container').innerHTML = html;
+        }
+    </script>
+</body>
 </html>
